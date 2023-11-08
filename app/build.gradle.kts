@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "net.iessochoa.davidpagan.practica5"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "net.iessochoa.davidpagan.practica5"
@@ -39,7 +39,7 @@ android {
 }
 
 dependencies {
-
+    implementation ("com.android.databinding:viewbinding:8.1.2")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
