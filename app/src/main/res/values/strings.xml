@@ -26,4 +26,7 @@
     %2$d
     <string name="mensaje_categoria2" tools:ignore="DuplicateDefinition">Has seleccionado %1$s como categoría en la posición
 %2$d</string>
+    <string name="abierta">Abierta</string>
+    <string name="en_curso">En Curso</string>
+    <string name="cerrada">Cerrada</string>
 </resources>

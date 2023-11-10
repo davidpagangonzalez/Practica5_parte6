@@ -63,10 +63,11 @@
         android:id="@+id/ivPagado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
         android:src="@drawable/baseline_thumb_up_24"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPrioridad"
-        tools:layout_editor_absoluteX="16dp"
         tools:ignore="MissingConstraints" />
 
     <Switch
@@ -78,4 +79,34 @@
         app:layout_constraintStart_toEndOf="@+id/ivPagado"
         tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml"
         tools:layout_editor_absoluteY="131dp" />
+
+    <RadioGroup
+        android:layout_width="254dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivPagado"
+        tools:ignore="ExtraText,MissingConstraints">
+
+        <RadioButton
+            android:id="@+id/rbAbierta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/abierta" />
+
+        <RadioButton
+            android:id="@+id/rbEnCurso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/en_curso" />
+
+        <RadioButton
+            android:id="@+id/rbCerrada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cerrada" />
+
+    </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>
