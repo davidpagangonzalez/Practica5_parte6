@@ -49,6 +49,7 @@ class TareaFragment : Fragment() {
         iniciaSpCategoria()
         iniciaSpPrioridad()
         iniciaSwPagado()
+        iniciaRgEstado()
 
 
         fun onDestroyView() {
@@ -107,7 +108,7 @@ class TareaFragment : Fragment() {
                         id: Long
                     ) {
                         //el array son 3 elementos y "alta" ocupa la tercera posición
-                        /*
+
                         if (posicion == 2) {
                             binding.clytTarea.setBackgroundColor(requireContext().getColor(R.color.prioridad_alta))
                         } else {//si no es prioridad alta quitamos el color
@@ -118,19 +119,21 @@ class TareaFragment : Fragment() {
                     override fun onNothingSelected(p0: AdapterView<*>?) {
                         binding.clytTarea.setBackgroundColor(Color.TRANSPARENT)
                     }
-
-                         */
-
-
                 }
-
-                    override fun onNothingSelected(p0: AdapterView<*>?) {
-                        TODO("Not yet implemented")
-                    }
-
-                }
-}
+            }
+        }
+    private fun iniciaRgEstado() {
+        //listener de radioGroup
+        binding.rgEstado.setOnCheckedChangeListener { _, checkedId ->
+            val imagen= when (checkedId){//el id del RadioButton seleccionado
+                //id del cada RadioButon
+                R.id.rbAbierta-> R.drawable.alien
+                R.id.rbEnCurso->R.drawable.allergy
+                else-> R.drawable.alien_outline
+            }
+            binding.ivEstado.setImageResource(imagen)
+        }
+        //iniciamos a abierto
+        binding.rgEstado.check(R.id.rbAbierta)
     }
-
-
-}
+    }
