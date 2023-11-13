@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SeekBar
 import androidx.core.view.updatePadding
 import androidx.navigation.fragment.findNavController
 import net.iessochoa.davidpagan.practica5.R
@@ -50,6 +51,7 @@ class TareaFragment : Fragment() {
         iniciaSpPrioridad()
         iniciaSwPagado()
         iniciaRgEstado()
+        iniciaSbHoras()
 
 
         fun onDestroyView() {
@@ -135,5 +137,21 @@ class TareaFragment : Fragment() {
         }
         //iniciamos a abierto
         binding.rgEstado.check(R.id.rbAbierta)
+    }
+    private fun iniciaSbHoras() {
+        //asignamos el evento
+        binding.sbHoras.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, progreso: Int, p2: Boolean) {
+                //Mostramos el progreso en el textview
+                binding.tvHoras.text=getString(R.string.horas_trabajadas,progreso)
+            }
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        })
+        //inicio del progreso
+        binding.sbHoras.progress=0
+        binding.tvHoras.text=getString(R.string.horas_trabajadas,0)
     }
     }
