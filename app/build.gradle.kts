@@ -39,6 +39,12 @@ android {
 }
 
 dependencies {
+    // ViewModel
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+// Activity
+    implementation ("androidx.activity:activity-ktx:1.8.0")
+// LiveData
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation ("com.android.databinding:viewbinding:8.1.2")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
