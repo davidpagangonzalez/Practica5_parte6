@@ -1,7 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-}
+    id("kotlin-parcelize")
+    id ("androidx.navigation.safeargs.kotlin")}
 
 android {
     namespace = "net.iessochoa.davidpagan.practica5"
@@ -37,6 +38,7 @@ android {
         viewBinding = true
     }
 }
+
 
 dependencies {
     // ViewModel
