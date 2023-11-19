@@ -75,7 +75,7 @@
         tools:ignore="MissingConstraints" />
 
     <Switch
-        android:id="@+id/sPagado"
+        android:id="@+id/swPagado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
@@ -124,7 +124,7 @@
         android:layout_marginTop="20dp"
         android:text="Estado de la tarea"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sPagado" />
+        app:layout_constraintTop_toBottomOf="@+id/swPagado" />
 
     <ImageView
         android:id="@+id/ivEstado"
@@ -134,7 +134,7 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/alien_outline"
         app:layout_constraintStart_toEndOf="@+id/tvEstado"
-        app:layout_constraintTop_toBottomOf="@+id/sPagado" />
+        app:layout_constraintTop_toBottomOf="@+id/swPagado" />
 
     <TextView
         android:id="@+id/tvHoras"
@@ -157,7 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rgEstado" />
 
     <RatingBar
-        android:id="@+id/rbValoracion"
+        android:id="@+id/rtbValoracion"
         style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -187,10 +187,10 @@
         android:layout_marginTop="20dp"
         android:hint="e"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbValoracion" />
+        app:layout_constraintTop_toBottomOf="@+id/rtbValoracion" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/etDescripcion"
         android:layout_width="360dp"
         android:layout_height="210dp"
         android:layout_marginTop="20dp"

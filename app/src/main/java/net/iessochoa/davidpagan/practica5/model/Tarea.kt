@@ -1,7 +1,14 @@
 package net.iessochoa.davidpagan.practica5.model
 
 import android.os.Parcelable
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import kotlinx.parcelize.Parcelize
+import net.iessochoa.davidpagan.practica5.databinding.FragmentTareaBinding
+import net.iessochoa.davidpagan.practica5.ui.TareaFragmentArgs
+import net.iessochoa.davidpagan.practica5.viewmodel.AppViewModel
+
 
 @Parcelize
 data class Tarea(
@@ -40,7 +47,4 @@ data class Tarea(
     override fun equals(other: Any?): Boolean {
         return (other is Tarea)&&(this.id == other?.id)
     }
-
-
-
 }
