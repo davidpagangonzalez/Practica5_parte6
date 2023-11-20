@@ -75,7 +75,7 @@
         tools:ignore="MissingConstraints" />
 
     <Switch
-        android:id="@+id/swPagado"
+        android:id="@+id/sPagado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
@@ -124,7 +124,7 @@
         android:layout_marginTop="20dp"
         android:text="Estado de la tarea"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swPagado" />
+        app:layout_constraintTop_toBottomOf="@+id/sPagado" />
 
     <ImageView
         android:id="@+id/ivEstado"
@@ -134,7 +134,7 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/alien_outline"
         app:layout_constraintStart_toEndOf="@+id/tvEstado"
-        app:layout_constraintTop_toBottomOf="@+id/swPagado" />
+        app:layout_constraintTop_toBottomOf="@+id/sPagado" />
 
     <TextView
         android:id="@+id/tvHoras"

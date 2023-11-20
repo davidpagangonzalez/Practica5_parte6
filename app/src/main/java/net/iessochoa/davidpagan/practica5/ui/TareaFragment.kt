@@ -12,6 +12,7 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.updatePadding
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import net.iessochoa.davidpagan.practica5.R
@@ -50,13 +51,13 @@ class TareaFragment : Fragment() {
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
- */
+
         binding.root.setOnApplyWindowInsetsListener { view, insets ->
             view.updatePadding(bottom = insets.systemWindowInsetBottom)
             insets
 
         }
-
+*/
         iniciaSpCategoria()
         iniciaSpPrioridad()
         iniciaSwPagado()
@@ -66,19 +67,20 @@ class TareaFragment : Fragment() {
         if (esNuevo)//nueva tarea
         //cambiamos el título de la ventana
             (requireActivity() as AppCompatActivity).supportActionBar?.title = "Nueva tarea"
-        else
-            iniciaTarea()
 
-        fun onDestroyView() {
-            super.onDestroyView()
-            _binding = null
-        }
+        else
+            iniciaTarea(args.tarea!!)
+
+
+
     }
+
+
     private fun guardaTarea() {
         //recuperamos los datos
         val categoria=binding.spCategoria.selectedItemPosition
         val prioridad=binding.spPrioridad.selectedItemPosition
-        val pagado=binding.swPagado.isChecked
+        val pagado=binding.sPagado.isChecked
         val estado=when (binding.rgEstado.checkedRadioButtonId) {
             R.id.rbAbierta -> 0
             R.id.rbEnCurso -> 1
@@ -102,7 +104,7 @@ class TareaFragment : Fragment() {
     }
 
     private fun iniciaSwPagado() {
-        binding.swPagado.setOnCheckedChangeListener { _, isChecked ->
+        binding.sPagado.setOnCheckedChangeListener { _, isChecked ->
             //cambiamos el icono si está marcado o no el switch
             val imagen=if (isChecked) R.drawable.ic_pagado
             else R.drawable.ic_no_pagado
@@ -110,7 +112,7 @@ class TareaFragment : Fragment() {
             binding.ivPagado.setImageResource(imagen)
         }
         //iniciamos a valor false
-        binding.swPagado.isChecked=false
+        binding.sPagado.isChecked=false
         binding.ivPagado.setImageResource(R.drawable.ic_no_pagado)
     }
 
@@ -199,7 +201,7 @@ class TareaFragment : Fragment() {
     private fun iniciaTarea(tarea: Tarea) {
         binding.spCategoria.setSelection(tarea.categoria)
         binding.spPrioridad.setSelection(tarea.prioridad)
-        binding.swPagado.isChecked = tarea.pagado
+        binding.sPagado.isChecked = tarea.pagado
         binding.rgEstado.check(
             when (tarea.estado) {
                 0 -> R.id.rbAbierta
@@ -215,4 +217,11 @@ class TareaFragment : Fragment() {
         //cambiamos el título
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "Tarea ${tarea.id}"
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
+
 }

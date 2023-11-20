@@ -3,6 +3,8 @@ package net.iessochoa.davidpagan.practica5.model
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.navArgs
 import kotlinx.parcelize.Parcelize
 import net.iessochoa.davidpagan.practica5.databinding.FragmentTareaBinding
