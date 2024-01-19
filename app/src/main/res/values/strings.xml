@@ -31,5 +31,7 @@
     <string name="cerrada">Cerrada</string>
     <string name="horas_trabajadas">Llevo %1$d horas trabajadas</string>
     <string name="horas_tTrabajadas">Horas trabajadas</string>
+    <string name="button">Button</string>
+    <string name="todo">TODO</string>
 
 </resources>

@@ -18,7 +18,7 @@ object ModelTempTarea {
     //Permite iniciar el objeto Singleton
     operator fun invoke(context: Context){
         this.application= context.applicationContext as Application
-        //iniciarPrueba tareas
+        iniciaPruebaTareas()
     }
     /**
      * devuelve un LiveData en vez de MutableLiveData

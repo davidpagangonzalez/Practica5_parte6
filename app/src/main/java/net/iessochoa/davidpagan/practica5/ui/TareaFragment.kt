@@ -47,17 +47,15 @@ class TareaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-        }
+
+
 
         binding.root.setOnApplyWindowInsetsListener { view, insets ->
             view.updatePadding(bottom = insets.systemWindowInsetBottom)
             insets
 
         }
-*/
+
         iniciaSpCategoria()
         iniciaSpPrioridad()
         iniciaSwPagado()
@@ -70,9 +68,6 @@ class TareaFragment : Fragment() {
 
         else
             iniciaTarea(args.tarea!!)
-
-
-
     }
 
 
