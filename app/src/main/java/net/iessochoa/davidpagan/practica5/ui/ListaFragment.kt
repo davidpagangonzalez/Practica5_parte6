@@ -69,6 +69,7 @@ class ListaFragment : Fragment() {
         }
 
         binding.fabNuevo.setOnClickListener(){
+            val action=ListaFragmentDirections.actionEditar(null)
             findNavController().navigate(R.id.action_editar)
         }
 

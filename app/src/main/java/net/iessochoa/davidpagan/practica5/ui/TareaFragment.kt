@@ -28,9 +28,9 @@ class TareaFragment : Fragment() {
     private var _binding: FragmentTareaBinding? = null
     val args: TareaFragmentArgs by navArgs()
     private val viewModel: AppViewModel by activityViewModels()
-
     //será una tarea nueva si no hay argumento
     val esNuevo by lazy { args.tarea==null }
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
