@@ -49,8 +49,11 @@ class ListaFragment : Fragment() {
             //creamos acción enviamos argumento nulo porque queremos crear NuevaTarea
             val action=ListaFragmentDirections.actionEditar(null)
             findNavController().navigate(action)
+            iniciaFiltros()
 
         }
+
+
 //para prueba, editamos una tarea aleatoria
         binding.btPruebaEdicion.setOnClickListener{
 //cogemos la lista actual de Tareas que tenemos en el ViewModel. No es lo más correcto
@@ -62,27 +65,16 @@ class ListaFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-
-        binding.root.setOnApplyWindowInsetsListener { view, insets ->
-            view.updatePadding(bottom = insets.systemWindowInsetBottom)
-            insets
-        }
-
-        binding.fabNuevo.setOnClickListener(){
-            val action=ListaFragmentDirections.actionEditar(null)
-            findNavController().navigate(R.id.action_editar)
-        }
-
-        binding.root.setOnApplyWindowInsetsListener { view, insets ->
-            view.updatePadding(bottom = insets.systemWindowInsetBottom)
-            insets
-        }
-
-
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    private fun iniciaFiltros(){
+        binding.swSinPagar.setOnCheckedChangeListener( ) { _,isChecked->
+            //actualiza el LiveData SoloSinPagarLiveData que a su vez modifica tareasLiveData
+            //mediante el Transformation
+            viewModel.setSoloSinPagar(isChecked)}
     }
     private fun actualizaLista(lista: List<Tarea>?) {
         //creamos un string modificable

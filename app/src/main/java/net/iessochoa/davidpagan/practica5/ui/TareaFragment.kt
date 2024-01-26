@@ -15,6 +15,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import net.iessochoa.davidpagan.practica5.R
 import net.iessochoa.davidpagan.practica5.databinding.FragmentTareaBinding
 import net.iessochoa.davidpagan.practica5.model.Tarea
@@ -48,19 +49,13 @@ class TareaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-        binding.root.setOnApplyWindowInsetsListener { view, insets ->
-            view.updatePadding(bottom = insets.systemWindowInsetBottom)
-            insets
-
-        }
-
         iniciaSpCategoria()
         iniciaSpPrioridad()
         iniciaSwPagado()
         iniciaRgEstado()
         iniciaSbHoras()
+        iniciaFabGuardar()
+
         //si es nueva tarea o es una edicion
         if (esNuevo)//nueva tarea
         //cambiamos el título de la ventana
@@ -87,8 +82,8 @@ class TareaFragment : Fragment() {
         val descripcion=binding.etDescripcion.text.toString()
         //creamos la tarea: si es nueva, generamos un id, en otro caso le asignamos su id
         val tarea = if(esNuevo)
-
             Tarea(categoria,prioridad,pagado,estado,horas,valoracion,tecnico,descripcion)
+
         else
 
             Tarea(args.tarea!!.id,categoria,prioridad,pagado,estado,horas,valoracion,tecnico,descripcion)
@@ -96,6 +91,14 @@ class TareaFragment : Fragment() {
         viewModel.addTarea(tarea)
         //salimos de editarFragment
         findNavController().popBackStack()
+    }
+    private fun iniciaFabGuardar(){
+        binding.fapSave.setOnClickListener{
+            if (binding.etTecnico.text.toString().isEmpty() || binding.etDescripcion.toString().isEmpty())
+                Snackbar.make( binding.root,"Error, necesita añadir parametros", 1000).show()
+            else
+                guardaTarea()
+        }
     }
 
     private fun iniciaSwPagado() {

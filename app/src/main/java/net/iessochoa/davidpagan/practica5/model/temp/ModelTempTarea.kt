@@ -90,6 +90,4 @@ object ModelTempTarea {
             tareas
         return tareasLiveData
     }
-
-
 }
