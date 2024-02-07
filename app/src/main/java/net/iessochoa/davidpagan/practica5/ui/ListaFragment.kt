@@ -49,14 +49,11 @@ class ListaFragment : Fragment() {
             //creamos acción enviamos argumento nulo porque queremos crear NuevaTarea
             val action=ListaFragmentDirections.actionEditar(null)
             findNavController().navigate(action)
-            iniciaFiltros()
-
         }
-
-
-//para prueba, editamos una tarea aleatoria
-        binding.btPruebaEdicion.setOnClickListener{
-//cogemos la lista actual de Tareas que tenemos en el ViewModel. No es lo más correcto
+        iniciaFiltros()
+            //para prueba, editamos una tarea aleatoria
+            binding.btPruebaEdicion.setOnClickListener{
+            //cogemos la lista actual de Tareas que tenemos en el ViewModel. No es lo más correcto
             val lista= viewModel.tareasLiveData.value
             //buscamos una tarea aleatoriamente
             val tarea=lista?.get((0..lista.lastIndex).random())
@@ -76,6 +73,22 @@ class ListaFragment : Fragment() {
             //mediante el Transformation
             viewModel.setSoloSinPagar(isChecked)}
     }
+    private fun iniciaFiltroEstado(){
+        binding.rb0.setOnCheckedChangeListener(){_, isChecked->
+            viewModel.setEstado(0)
+        }
+        binding.rb1.setOnCheckedChangeListener(){_, isChecked->
+            viewModel.setEstado(1)
+        }
+        binding.rb2.setOnCheckedChangeListener(){_, isChecked->
+            viewModel.setEstado(2)
+        }
+        binding.rb3.setOnCheckedChangeListener(){_, isChecked->
+            viewModel.setEstado(3)
+        }
+
+    }
+
     private fun actualizaLista(lista: List<Tarea>?) {
         //creamos un string modificable
         val listaString = buildString {

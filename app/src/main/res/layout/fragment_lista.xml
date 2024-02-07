@@ -11,12 +11,12 @@
         android:id="@+id/tvListaTareas"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swSinPagar"
+        app:layout_constraintTop_toBottomOf="@+id/rb0"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -49,7 +49,43 @@
         android:layout_marginTop="8dp"
         android:text="SinPagar"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="25dp"
-        tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
+        tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml"
+        tools:layout_editor_absoluteX="25dp" />
+
+    <RadioButton
+        android:id="@+id/rb1"
+        android:layout_width="93dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:text="En curso"
+        app:layout_constraintStart_toEndOf="@+id/rb0"
+        app:layout_constraintTop_toBottomOf="@+id/swSinPagar" />
+
+    <RadioButton
+        android:id="@+id/rb2"
+        android:layout_width="94dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="8dp"
+        android:text="Cerrada"
+        app:layout_constraintStart_toEndOf="@+id/rb1"
+        app:layout_constraintTop_toBottomOf="@+id/swSinPagar" />
+
+    <RadioButton
+        android:id="@+id/rb3"
+        android:layout_width="94dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="8dp"
+        android:text="Todas"
+        app:layout_constraintStart_toEndOf="@+id/rb2"
+        app:layout_constraintTop_toBottomOf="@+id/swSinPagar" />
+
+    <RadioButton
+        android:id="@+id/rb0"
+        android:layout_width="90dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="8dp"
+        android:text="Abierta"
+        app:layout_constraintTop_toBottomOf="@+id/swSinPagar"
+        tools:layout_editor_absoluteX="25dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
