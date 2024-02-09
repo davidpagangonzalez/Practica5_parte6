@@ -104,7 +104,9 @@ object ModelTempTarea {
 
     fun getTareasFiltroEstado(estado: Int):MutableLiveData<List<Tarea>>{
         if (estado == 0){
-            tareasLiveData.value=tareas.filter { it.estado==estado } }
+            tareasLiveData.value=tareas.filter { it.estado==estado }
+
+        }
         if (estado == 1){
             tareasLiveData.value=tareas.filter { it.estado==estado }}
         if (estado == 2){

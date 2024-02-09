@@ -209,7 +209,6 @@ class TareaFragment : Fragment() {
         )
         binding.sbHoras.progress = tarea.horasTrabajo
         binding.rtbValoracion.rating = tarea.valoracionCliente
-        24
         binding.etTecnico.setText(tarea.tecnico)
         binding.etDescripcion.setText(tarea.descripcion)
         //cambiamos el título
@@ -219,7 +218,4 @@ class TareaFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
-
 }
