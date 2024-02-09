@@ -15,7 +15,11 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         val tareasLiveData : LiveData<List<Tarea>>
         //creamos el LiveData de tipo Booleano. Representa nuestro filtro
         private val soloSinPagarLiveData= MutableLiveData<Boolean>(false)
-    public val filtrosLiveData by lazy {//inicio tardío
+    //LiveData que cuando se modifique un filtro cambia el tareasLiveData
+    val SOLO_SIN_PAGAR="SOLO_SIN_PAGAR"
+    val ESTADO="ESTADO"
+
+        public val filtrosLiveData by lazy {//inicio tardío
         val mutableMap = mutableMapOf<String, Any?>(
             SOLO_SIN_PAGAR to false,
             ESTADO to 3
@@ -58,9 +62,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     fun addTarea(tarea: Tarea) = repositorio.addTarea(tarea)
     fun delTarea(tarea: Tarea) = repositorio.delTarea(tarea)
 
-    //LiveData que cuando se modifique un filtro cambia el tareasLiveData
-    val SOLO_SIN_PAGAR="SOLO_SIN_PAGAR"
-    val ESTADO="ESTADO"
+
 
     /**
      * Modifica el Map filtrosLiveData el elemento "SOLO_SIN_PAGAR"

@@ -33,5 +33,6 @@
     <string name="horas_tTrabajadas">Horas trabajadas</string>
     <string name="button">Button</string>
     <string name="todo">TODO</string>
+    <string name="estado_de_la_tarea">Estado de la tarea</string>
 
 </resources>

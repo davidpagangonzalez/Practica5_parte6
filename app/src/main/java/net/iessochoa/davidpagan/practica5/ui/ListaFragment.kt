@@ -72,6 +72,9 @@ class ListaFragment : Fragment() {
             //actualiza el LiveData SoloSinPagarLiveData que a su vez modifica tareasLiveData
             //mediante el Transformation
             viewModel.setSoloSinPagar(isChecked)}
+        iniciaFiltroEstado()
+
+
     }
     private fun iniciaFiltroEstado(){
         binding.rb0.setOnCheckedChangeListener(){_, isChecked->
