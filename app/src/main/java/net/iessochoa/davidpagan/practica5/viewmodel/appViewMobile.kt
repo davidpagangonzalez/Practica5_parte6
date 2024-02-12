@@ -62,8 +62,6 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     fun addTarea(tarea: Tarea) = repositorio.addTarea(tarea)
     fun delTarea(tarea: Tarea) = repositorio.delTarea(tarea)
 
-
-
     /**
      * Modifica el Map filtrosLiveData el elemento "SOLO_SIN_PAGAR"
      * que activará el Transformations de TareasLiveData
