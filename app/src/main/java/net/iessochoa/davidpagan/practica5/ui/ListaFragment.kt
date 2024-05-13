@@ -10,7 +10,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import net.iessochoa.davidpagan.practica5.R
+import net.iessochoa.davidpagan.practica5.adapters.TareasAdapter
 import net.iessochoa.davidpagan.practica5.databinding.FragmentListaBinding
 import net.iessochoa.davidpagan.practica5.model.Tarea
 import net.iessochoa.davidpagan.practica5.viewmodel.AppViewModel
@@ -23,6 +25,20 @@ class ListaFragment : Fragment() {
     private val viewModel: AppViewModel by activityViewModels()
 
     private var _binding: FragmentListaBinding? = null
+
+    lateinit var tareasAdapter: TareasAdapter
+
+    private fun iniciaRecyclerView() {
+        //creamos el adaptador
+        tareasAdapter = TareasAdapter()
+
+        with(binding.rvTarea) {
+            //Creamos el layoutManager
+            layoutManager = LinearLayoutManager(activity)
+            //le asignamos el adaptador
+            adapter = tareasAdapter
+        }
+    }
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -41,26 +57,15 @@ class ListaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.tareasLiveData.observe(viewLifecycleOwner, Observer<List<Tarea>> { lista ->
-            actualizaLista(lista)
-        })
-        binding.fabNuevo.setOnClickListener {
-            //creamos acción enviamos argumento nulo porque queremos crear NuevaTarea
-            val action=ListaFragmentDirections.actionEditar(null)
-            findNavController().navigate(action)
-        }
+        iniciaRecyclerView()
         iniciaFiltros()
-            //para prueba, editamos una tarea aleatoria
-            binding.btPruebaEdicion.setOnClickListener{
-            //cogemos la lista actual de Tareas que tenemos en el ViewModel. No es lo más correcto
-            val lista= viewModel.tareasLiveData.value
-            //buscamos una tarea aleatoriamente
-            val tarea=lista?.get((0..lista.lastIndex).random())
-            //se la enviamos a TareaFragment para su edición
-            val action=ListaFragmentDirections.actionEditar(tarea)
-            findNavController().navigate(action)
-        }
+
+        viewModel.tareasLiveData.observe(viewLifecycleOwner,
+            Observer<List<Tarea>> { lista ->
+                //actualizaLista(lista)
+                tareasAdapter.setLista(lista)
+            
+            })
 
     }
     override fun onDestroyView() {
@@ -114,6 +119,6 @@ class ListaFragment : Fragment() {
                 )
             }
         }
-        binding.tvListaTareas.setText(listaString)
+        //binding.tvListaTareas.setText(listaString)
     }
 }
