@@ -11,6 +11,8 @@ import net.iessochoa.davidpagan.practica5.model.Tarea
 class TareasAdapter ():
     RecyclerView.Adapter<TareasAdapter.TareaViewHolder>() {
     lateinit var listaTareas: List<Tarea>
+    var onTareaClickListener:OnTareaClickListener?=null
+
 
     fun setLista(lista: List<Tarea>) {
         listaTareas = lista
@@ -19,7 +21,23 @@ class TareasAdapter ():
     }
 
     inner class TareaViewHolder(val binding: ItemTareaBinding):
-        RecyclerView.ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root){
+    init {
+        //inicio del click de icono borrar
+        binding.ivBorrar.setOnClickListener() {
+            //recuperamos la tarea de la lista
+            val tarea = listaTareas?.get(this.adapterPosition)
+            //llamamos al evento borrar que estará definido en el fragment
+            onTareaClickListener?.onTareaBorrarClick(tarea)
+        }
+        //inicio del click sobre el Layout(constraintlayout)
+        binding.root.setOnClickListener() {
+            val tarea = listaTareas.get(this.adapterPosition)
+            onTareaClickListener?.onTareaClick(tarea)
+        }
+    }
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             TareaViewHolder {

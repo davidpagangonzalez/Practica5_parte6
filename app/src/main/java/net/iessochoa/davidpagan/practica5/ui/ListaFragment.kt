@@ -28,6 +28,28 @@ class ListaFragment : Fragment() {
 
     lateinit var tareasAdapter: TareasAdapter
 
+
+    private fun iniciaCRUD(){
+        binding.fabNuevo.setOnClickListener(){
+            val action=ListaFragmentDirections.actionEditar(null)
+            findNavController().navigate(action)
+        }
+
+        tareasAdapter.onTareaClickListener = object : TareasAdapter.OnTareaClickListener {
+            //**************Editar Tarea*************
+            override fun onTareaClick(tarea: Tarea?) {
+                //creamos la acción y enviamos como argumento la tarea para editarla
+                val action = ListaFragmentDirections.actionEditar(tarea)
+                findNavController().navigate(action)
+            }
+            //***********Borrar Tarea************
+            override fun onTareaBorrarClick(tarea: Tarea?) {
+                //borramos directamente la tarea
+                viewModel.delTarea(tarea!!)
+            }
+        }
+    }
+
     private fun iniciaRecyclerView() {
         //creamos el adaptador
         tareasAdapter = TareasAdapter()
@@ -55,10 +77,12 @@ class ListaFragment : Fragment() {
 
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         iniciaRecyclerView()
         iniciaFiltros()
+        iniciaCRUD()
 
         viewModel.tareasLiveData.observe(viewLifecycleOwner,
             Observer<List<Tarea>> { lista ->
