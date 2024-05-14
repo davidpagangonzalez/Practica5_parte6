@@ -1,5 +1,6 @@
 package net.iessochoa.davidpagan.practica5.adapters
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,9 +11,8 @@ import net.iessochoa.davidpagan.practica5.model.Tarea
 
 class TareasAdapter ():
     RecyclerView.Adapter<TareasAdapter.TareaViewHolder>() {
-    lateinit var listaTareas: List<Tarea>
+    var listaTareas: List<Tarea>?=null
     var onTareaClickListener:OnTareaClickListener?=null
-
 
     fun setLista(lista: List<Tarea>) {
         listaTareas = lista
@@ -32,20 +32,20 @@ class TareasAdapter ():
         }
         //inicio del click sobre el Layout(constraintlayout)
         binding.root.setOnClickListener() {
-            val tarea = listaTareas.get(this.adapterPosition)
+            val tarea = listaTareas!!.get(this.adapterPosition)
             onTareaClickListener?.onTareaClick(tarea)
+        }
+        binding.ivEstado.setOnClickListener(){
+            val tarea= listaTareas?.get(this.adapterPosition)
+            onTareaClickListener?.onTareaEstadoClick(tarea)
         }
     }
     }
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             TareaViewHolder {
         //utilizamos binding, en otro caso hay que indicar el item.xml. Para más detalles puedes verlo en la documentación
         val binding = ItemTareaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TareaViewHolder(binding)
-
-
     }
 
     override fun onBindViewHolder(tareaViewHolder: TareaViewHolder, pos: Int) {
@@ -81,6 +81,8 @@ class TareasAdapter ():
         fun onTareaClick(tarea:Tarea?)
         //borrar tarea que contiene el ViewHolder
         fun onTareaBorrarClick(tarea:Tarea?)
+        fun onTareaEstadoClick(tarea: Tarea?)
+
     }
 
     //tamaño de la lista

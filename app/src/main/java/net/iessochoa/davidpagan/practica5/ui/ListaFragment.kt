@@ -30,7 +30,16 @@ class ListaFragment : Fragment() {
 
     lateinit var tareasAdapter: TareasAdapter
 
-
+    private fun cambiarEstado(tarea: Tarea) {
+        val nEstado = when (tarea.estado) {
+            0 -> 1
+            1 -> 2
+            2 -> 0
+            else -> tarea.estado
+        }
+        val tareaNuevaEstado = tarea.copy(estado = nEstado)
+        viewModel.updateTarea(tareaNuevaEstado)
+    }
     private fun iniciaCRUD(){
         binding.fabNuevo.setOnClickListener(){
             val action=ListaFragmentDirections.actionEditar(null)
@@ -48,6 +57,10 @@ class ListaFragment : Fragment() {
             override fun onTareaBorrarClick(tarea: Tarea?) {
                 //borramos directamente la tarea
                 borrarTarea(tarea!!)
+            }
+
+            override fun onTareaEstadoClick(tarea: Tarea?) {
+                cambiarEstado(tarea!!)
             }
 
         }
@@ -83,8 +96,6 @@ class ListaFragment : Fragment() {
         }
     }
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -138,7 +149,6 @@ class ListaFragment : Fragment() {
         binding.rb3.setOnCheckedChangeListener(){_, isChecked->
             viewModel.setEstado(3)
         }
-
     }
 
     private fun actualizaLista(lista: List<Tarea>?) {

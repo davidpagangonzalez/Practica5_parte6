@@ -18,7 +18,7 @@ data class Tarea(
     val categoria:Int,
     val prioridad:Int,
     val pagado:Boolean,
-    val estado:Int,
+    var estado:Int,
     val horasTrabajo:Int,
     val valoracionCliente:Float,
     val tecnico:String,

@@ -105,7 +105,6 @@ object ModelTempTarea {
     fun getTareasFiltroEstado(estado: Int):MutableLiveData<List<Tarea>>{
         if (estado == 0){
             tareasLiveData.value=tareas.filter { it.estado==estado }
-
         }
         if (estado == 1){
             tareasLiveData.value=tareas.filter { it.estado==estado }}
@@ -114,5 +113,19 @@ object ModelTempTarea {
         if (estado == 3){
             tareasLiveData.value=tareas}
         return tareasLiveData
+    }
+
+    suspend fun updateTarea(tarea: Tarea) {
+        val pos = tareas.indexOf(tarea)
+        if (pos >= 0) {
+            tareas.set(pos, tarea)
+            // Actualiza el LiveData en el hilo principal
+            tareasLiveData.postValue(tareas)
+        }
+    }
+
+    suspend fun cambiarEstadoTarea(tarea: Tarea) {
+        tarea.estado = (tarea.estado + 1) % 3 // Cambia estado circularmente
+        updateTarea(tarea) // Actualiza la tarea en el modelo
     }
 }

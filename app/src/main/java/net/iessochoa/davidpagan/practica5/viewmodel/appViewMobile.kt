@@ -5,6 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import net.iessochoa.davidpagan.practica5.model.Tarea
 import net.iessochoa.davidpagan.practica5.repository.Repositorio
 
@@ -86,5 +89,9 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         mapa!![ESTADO] = estado
         //activamos el LiveData
         filtrosLiveData.value = mapa
+    }
+    fun updateTarea(tarea: Tarea) = viewModelScope.launch(Dispatchers.IO)
+    {
+        repositorio.updateTarea(tarea)
     }
 }
