@@ -58,7 +58,7 @@ object ModelTempTarea {
         )
         lateinit var tarea: Tarea
         val Random = Random()
-        (1..10).forEach({
+        (1..10).forEach {
             tarea = Tarea(
                 (0..4).random(),
                 (0..2).random(),
@@ -70,7 +70,7 @@ object ModelTempTarea {
                 "tarea $it Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat ligula et vehicula mattis. \n Etiam tristique ornare lacinia. Vestibulum lacus magna, dignissim et tempor id, convallis sed augue"
             )
             tareas.add(tarea)
-        })
+        }
         //actualizamos el LiveData
         tareasLiveData.value = tareas
     }
@@ -104,8 +104,7 @@ object ModelTempTarea {
 
     fun getTareasFiltroEstado(estado: Int):MutableLiveData<List<Tarea>>{
         if (estado == 0){
-            tareasLiveData.value=tareas.filter { it.estado==estado }
-        }
+            tareasLiveData.value=tareas.filter { it.estado==estado }}
         if (estado == 1){
             tareasLiveData.value=tareas.filter { it.estado==estado }}
         if (estado == 2){
