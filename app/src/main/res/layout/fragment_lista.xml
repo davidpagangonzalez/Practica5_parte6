@@ -68,8 +68,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTarea"
-        android:layout_width="409dp"
-        android:layout_height="556dp"
+        android:layout_width="0dp"
+        android:layout_height="521dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

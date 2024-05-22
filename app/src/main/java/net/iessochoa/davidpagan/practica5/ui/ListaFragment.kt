@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import net.iessochoa.davidpagan.practica5.R
 import net.iessochoa.davidpagan.practica5.adapters.TareasAdapter
 import net.iessochoa.davidpagan.practica5.databinding.FragmentListaBinding
@@ -123,13 +124,10 @@ class ListaFragment : Fragment() {
         iniciaFiltros()
         iniciaCRUD()
 
-        viewModel.tareasLiveData.observe(viewLifecycleOwner,
-            Observer<List<Tarea>> { lista ->
-                //actualizaLista(lista)
+        viewModel.tareasLiveData.observe(viewLifecycleOwner, Observer<List<Tarea>> { lista ->
+                actualizaLista(lista)
                 tareasAdapter.setLista(lista)
-            
             })
-
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -157,15 +155,12 @@ class ListaFragment : Fragment() {
         binding.rb3.setOnCheckedChangeListener(){_, isChecked->
             viewModel.setEstado(3)
         }
+
     }
 
-    private fun iniciaSwiped(){
-        //creamos el evento del Swiper para detectar cuando el usuario desliza un item
+    fun iniciaSwiped() {
         val itemTouchHelperCallback =
-            object :
-                ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or
-                        ItemTouchHelper.RIGHT) {
-                //si tenemos que actuar cuando se mueve un item
+            object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
                 override fun onMove(
                     recyclerView: RecyclerView,
                     viewHolder: RecyclerView.ViewHolder,
@@ -173,19 +168,34 @@ class ListaFragment : Fragment() {
                 ): Boolean {
                     return false
                 }
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder,
-                                      direction: Int) {
-                    //obtenemos la posición de la tarea a partir del viewholder
-                    val
-                            tareaDelete=tareasAdapter.listaTareas?.get(viewHolder.adapterPosition)
-                    //borramos la tarea. Falta preguntar al usuario si desea borrarla
-                            if (tareaDelete != null) {
-                                viewModel.delTarea(tareaDelete)
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    val tareaDelete = tareasAdapter.listaTareas?.get(viewHolder.adapterPosition)
+                    if (tareaDelete != null) {
+                        // Mostrar mensaje de confirmación antes de borrar
+                        val snackbar = Snackbar.make(
+                            binding.root,
+                            "Tarea eliminada",
+                            Snackbar.LENGTH_LONG
+                        )
+                        snackbar.setAction("Deshacer") {
+                            // Si el usuario selecciona deshacer, agregamos la tarea de nuevo
+                            viewModel.addTarea(tareaDelete)
+                        }
+                        snackbar.addCallback(object : Snackbar.Callback() {
+                            override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                                // Si la Snackbar se cierra (no deshacer), entonces borramos la tarea
+                                if (event != Snackbar.Callback.DISMISS_EVENT_ACTION) {
+                                    viewModel.delTarea(tareaDelete)
+                                }
                             }
+                        })
+                        snackbar.show()
+                    }
                 }
             }
+
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
-        //asignamos el evento al RecyclerView
         itemTouchHelper.attachToRecyclerView(binding.rvTarea)
     }
 
