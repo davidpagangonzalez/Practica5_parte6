@@ -222,5 +222,6 @@ class ListaFragment : Fragment() {
             }
         }
         //binding.tvListaTareas.setText(listaString)
+        //cambio
     }
 }
