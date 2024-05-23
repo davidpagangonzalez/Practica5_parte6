@@ -78,9 +78,10 @@ object ModelTempTarea {
      * Borra una tarea y actualiza el LiveData
      * para avisar a los observadores
      */
-    fun delTarea(tarea: Tarea) {
+    suspend fun delTarea(tarea: Tarea) {
+        //Thread.sleep(10000)
         tareas.remove(tarea)
-        tareasLiveData.value = tareas
+        tareasLiveData.postValue(tareas)
     }
     fun getTareasFiltroSinPagar(soloSinPagar:Boolean): LiveData<List<Tarea>> {
         //devuelve el LiveData con la lista filtrada o entera

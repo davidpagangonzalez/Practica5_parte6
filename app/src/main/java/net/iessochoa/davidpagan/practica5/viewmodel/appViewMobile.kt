@@ -30,6 +30,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         val mutableLiveData : MutableLiveData<Int>
         MutableLiveData(mutableMap)
     }
+
     //inicio ViewModel
     init {
             //inicia repositorio
@@ -63,7 +64,10 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
      */
 
     fun addTarea(tarea: Tarea) = repositorio.addTarea(tarea)
-    fun delTarea(tarea: Tarea) = repositorio.delTarea(tarea)
+    //lanzamos el borrado por corrutina
+    fun delTarea(tarea: Tarea) = viewModelScope.launch(Dispatchers.IO){
+        Repositorio.delTarea(tarea)}
+
 
     /**
      * Modifica el Map filtrosLiveData el elemento "SOLO_SIN_PAGAR"

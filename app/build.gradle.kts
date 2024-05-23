@@ -41,6 +41,10 @@ android {
 
 
 dependencies {
+    //corrutinas
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core: 1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android: 1.7.3")
+
     // ViewModel
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 // Activity
