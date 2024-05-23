@@ -6,14 +6,17 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.navArgs
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 import net.iessochoa.davidpagan.practica5.databinding.FragmentTareaBinding
 import net.iessochoa.davidpagan.practica5.ui.TareaFragmentArgs
 import net.iessochoa.davidpagan.practica5.viewmodel.AppViewModel
 
-
+@Entity(tableName = "tareas")
 @Parcelize
 data class Tarea(
+@PrimaryKey(autoGenerate = true)
     var id:Long?=null,//id único
     val categoria:Int,
     val prioridad:Int,
@@ -34,7 +37,7 @@ data class Tarea(
                  horasTrabajo:Int,
                  valoracionCliente:Float,
                  tecnico:String,
-                 descripcion:String):this(generateId(),categoria,prioridad,pagado,estado,horasTrabajo,valoracionCliente, tecnico, descripcion){}
+                 descripcion:String):this(null,categoria,prioridad,pagado,estado,horasTrabajo,valoracionCliente, tecnico, descripcion){}
 
     companion object {
         var idContador = 1L//iniciamos contador de tareas
