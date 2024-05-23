@@ -24,4 +24,5 @@ interface TareasDao {
     fun getTareasFiltroEstado(estado:Int):LiveData<List<Tarea>>
     @Query("SELECT * FROM tareas WHERE (pagado= :soloSinPagar) AND(estado= :estado)")
     fun getTareasFiltroSinPagarEstado(soloSinPagar:Boolean, estado:Int):LiveData<List<Tarea>>
+     fun updateTarea(tarea: Tarea)
 }

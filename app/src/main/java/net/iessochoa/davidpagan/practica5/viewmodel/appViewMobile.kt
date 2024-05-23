@@ -63,7 +63,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
      * activa el LiveData del filtro
      */
 
-    fun addTarea(tarea: Tarea) = repositorio.addTarea(tarea)
+    fun addTarea(tarea: Tarea) = viewModelScope.launch(Dispatchers.IO){
+        Repositorio.addTarea(tarea)}
     //lanzamos el borrado por corrutina
     fun delTarea(tarea: Tarea) = viewModelScope.launch(Dispatchers.IO){
         Repositorio.delTarea(tarea)}

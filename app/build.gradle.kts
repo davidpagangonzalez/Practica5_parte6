@@ -47,6 +47,7 @@ dependencies {
     implementation("androidx.preference:preference:1.2.1")
     kapt ("androidx.room:room-compiler:2.6.0")
 
+    implementation ("androidx.preference:preference-ktx:1.2.1")
 
 // Lifecycle components
     implementation ("androidx.lifecycle:lifecycle-common-java8:2.6.2")
