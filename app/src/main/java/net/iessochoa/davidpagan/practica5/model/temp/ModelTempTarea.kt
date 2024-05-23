@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import net.iessochoa.davidpagan.practica5.model.Tarea
 import java.util.Random
 
@@ -18,7 +20,7 @@ object ModelTempTarea {
     //Permite iniciar el objeto Singleton
     operator fun invoke(context: Context){
         this.application= context.applicationContext as Application
-        iniciaPruebaTareas()
+        GlobalScope.launch { iniciaPruebaTareas() }
     }
     /**
      * devuelve un LiveData en vez de MutableLiveData
@@ -72,7 +74,7 @@ object ModelTempTarea {
             tareas.add(tarea)
         }
         //actualizamos el LiveData
-        tareasLiveData.value = tareas
+        tareasLiveData.postValue(tareas)
     }
     /**
      * Borra una tarea y actualiza el LiveData
